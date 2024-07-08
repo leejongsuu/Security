@@ -1,5 +1,5 @@
 # Security
-Securiry Study
+Security Study
 
 branch
 - 
