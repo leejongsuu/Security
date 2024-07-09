@@ -16,3 +16,7 @@ Security Study
 - basic-formLogin
   - 폼 인증 - formLogin
   - 폼 인증 필터 - UsernamePasswordAuthenticationFilter
+
+- basic-httpBasic
+  - 기본 인증 - httpBasic()
+  - 기본 인증 필터 - BasicAuthenticationFilter
