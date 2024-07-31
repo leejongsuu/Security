@@ -30,18 +30,18 @@ public class SecurityConfig {
                 .formLogin(form -> form
 //                        .loginPage("/loginPage")
                                 .loginProcessingUrl("/loginProc")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/", true)
                                 .usernameParameter("username")
                                 .passwordParameter("password")
+                                .successHandler((request, response, authentication) -> {
+                                    System.out.println("authentication = " + authentication);
+                                    response.sendRedirect("/home");
+                                })
                                 .failureHandler((request, response, exception) -> {
                                     System.out.println("exception = " + exception.getMessage());
                                     System.out.println("Redirecting to /failed");
                                     response.setStatus(HttpServletResponse.SC_FOUND);
                                     response.sendRedirect("/failed");
-                                })
-                                .successHandler((request, response, authentication) -> {
-                                    System.out.println("authentication = " + authentication);
-                                    response.sendRedirect("/home");
                                 })
                                 .permitAll()
                 );
