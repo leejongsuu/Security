@@ -28,12 +28,12 @@ public class SecurityConfig {
         // UserDetailsService 대신 InMemoryUserDetailsManager도 가능
         UserDetails user1 = User.withUsername("user1")
                 .password("{noop}123")
-                .authorities("USER")
+                .roles("USER")
                 .build();
 
         UserDetails user2 = User.withUsername("user2")
                 .password("{noop}123")
-                .authorities("USER")
+                .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user1, user2);
     }
