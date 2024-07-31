@@ -3,4 +3,5 @@ spring:
     user:
       name: user1
       password: 123
+      roles: USER
 
