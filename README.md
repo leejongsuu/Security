@@ -20,3 +20,7 @@ Security Study
 - basic-httpBasic
   - 기본 인증 - httpBasic()
   - 기본 인증 필터 - BasicAuthenticationFilter
+
+- basic-rememberMe
+  - 기억하기 인증 - rememberMe()
+  - 기억하기 인증 필터 - RememberMeAuthenticationFilter
