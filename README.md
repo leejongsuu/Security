@@ -24,3 +24,7 @@ Security Study
 - basic-rememberMe
   - 기억하기 인증 - rememberMe()
   - 기억하기 인증 필터 - RememberMeAuthenticationFilter
+
+- basic-anonymous
+  - 익명 사용자 - anonymous()
+  
