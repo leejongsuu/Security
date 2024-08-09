@@ -27,4 +27,6 @@ Security Study
 
 - basic-anonymous
   - 익명 사용자 - anonymous()
-  
+
+- basic-logout
+  - 로그아웃 - logout()
