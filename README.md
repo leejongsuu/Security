@@ -33,3 +33,6 @@ Security Study
 
 - basic-RequestCache_SavedRequest
   - 요청 캐시 - RequestCache / SavedRequest
+
+- basic - SecurityContextHolder
+  - SecurityContext / SecurityContextHolder
