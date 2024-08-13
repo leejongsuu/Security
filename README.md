@@ -36,3 +36,6 @@ Security Study
 
 - basic - SecurityContextHolder
   - SecurityContext / SecurityContextHolder
+ 
+- basic - AuthenticationManager
+  - 인증 관리자 - AuthenticationManager
