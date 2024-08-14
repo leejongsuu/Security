@@ -3,10 +3,12 @@ package security.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AnonymousAuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -14,41 +16,48 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.util.List;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig2 {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/api/login").permitAll()
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   AuthenticationManagerBuilder builder,
+                                                   AuthenticationConfiguration configuration
+    ) throws Exception {
+
+        AuthenticationManagerBuilder managerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        managerBuilder.authenticationProvider(customAuthenticationProvider());
+
+        ProviderManager authenticationManager = (ProviderManager) configuration.getAuthenticationManager();
+        authenticationManager.getProviders().remove(0);
+        builder.authenticationProvider(new DaoAuthenticationProvider());
+
+        http.authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
-                .addFilterBefore(customFilter(http), UsernamePasswordAuthenticationFilter.class);
+                .formLogin(Customizer.withDefaults());
         return http.build();
     }
 
-    public CustomAuthenticationFilter customFilter(HttpSecurity http) {
-
-        List<AuthenticationProvider> list1 = List.of(new DaoAuthenticationProvider());
-        ProviderManager parent = new ProviderManager(list1);
-        List<AuthenticationProvider> list2 = List.of(new AnonymousAuthenticationProvider("key"), new CustomAuthenticationProvider());
-        ProviderManager authenticationManager = new ProviderManager(list2, parent);
-
-        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(http);
-        customAuthenticationFilter.setAuthenticationManager(authenticationManager);
-
-        return customAuthenticationFilter;
-
+    @Bean
+    public AuthenticationProvider customAuthenticationProvider() {
+        return new CustomAuthenticationProvider();
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user = User.withUsername("user").password("{noop}1111").roles("USER").build();
-        return  new InMemoryUserDetailsManager(user);
+    public UserDetailsService userDetailsService() {
+        // UserDetailsService 대신 InMemoryUserDetailsManager도 가능
+        UserDetails user1 = User.withUsername("user1")
+                .password("{noop}123")
+                .authorities("USER")
+                .build();
+
+        UserDetails user2 = User.withUsername("user2")
+                .password("{noop}123")
+                .authorities("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user1, user2);
     }
 }
