@@ -39,3 +39,6 @@ Security Study
  
 - basic - AuthenticationManager
   - 인증 관리자 - AuthenticationManager
+
+- basic - AuthenticationProvider
+  - 인증 제공자 - AuthenticationProvider
