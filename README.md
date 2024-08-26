@@ -42,3 +42,6 @@ Security Study
 
 - basic - AuthenticationProvider
   - 인증 제공자 - AuthenticationProvider
+
+- basic - UserDetailService
+  - 사용자 상세 서비스 - UserDetailService
