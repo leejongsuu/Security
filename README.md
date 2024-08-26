@@ -45,3 +45,6 @@ Security Study
 
 - basic - UserDetailService
   - 사용자 상세 서비스 - UserDetailService
+
+ - basic - UserDetails
+  - 사용자 상세 - UserDetails
