@@ -43,8 +43,12 @@ Security Study
 - basic - AuthenticationProvider
   - 인증 제공자 - AuthenticationProvider
 
+- basic - 스프링MVC_로그인구현
+  - 인증 상태 영속성 - 스프링MVC_로그인구현
+
 - basic - UserDetailService
   - 사용자 상세 서비스 - UserDetailService
 
- - basic - UserDetails
+- basic - UserDetails
    - 사용자 상세 - UserDetails
+
