@@ -55,4 +55,4 @@ Security Study
 - 세션관리
   - basic - 동시 세션제어
   - basic - 세션 고정보호
-  -
+  - basic - 세션 생성정책
