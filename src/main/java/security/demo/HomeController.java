@@ -26,4 +26,14 @@ public class HomeController {
     public String fail() {
         return "fail";
     }
+
+    @GetMapping("/invalidSessionUrl")
+    public String invalidSessionUrl() {
+        return "invalidSessionUrl";
+    }
+
+    @GetMapping("expiredUrl")
+    public String expiredUrl() {
+        return "expiredUrl";
+    }
 }
