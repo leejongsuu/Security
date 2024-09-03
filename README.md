@@ -52,7 +52,7 @@ Security Study
 - basic - 스프링MVC_로그인구현
   - 인증 상태 영속성 - 스프링MVC_로그인구현
 
-- basic - 세션관리
-  - 동시 세션제어
-  - 
-
+- 세션관리
+  - basic - 동시 세션제어
+  - basic - 세션 고정보호
+  -
